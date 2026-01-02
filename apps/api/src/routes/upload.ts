@@ -90,7 +90,7 @@ function getContentType(filename: string): string {
  * Saves file to local storage (./public/)
  */
 async function saveFileLocally(filePath: string, buffer: Buffer): Promise<void> {
-  const fullPath = path.join("./public", filePath);
+  const fullPath = path.join("./", filePath);
   const dir = path.dirname(fullPath);
   
   // Create parent directories if they don't exist
@@ -102,7 +102,7 @@ async function saveFileLocally(filePath: string, buffer: Buffer): Promise<void> 
 }
 
 async function localFileExists(filePath: string): Promise<boolean> {
-  const fullPath = path.join("./public", filePath);
+  const fullPath = path.join("./", filePath);
   return fs.existsSync(fullPath);
 }
 
@@ -121,7 +121,7 @@ async function queueThumbnailGeneration(filePath: string, storage: ReturnType<ty
     // Get source path
     const sourcePath = storage 
       ? `./temp/${path.basename(filePath)}` 
-      : path.join("./public", filePath);
+      : path.join("./", filePath);
 
     // Add to queue with HIGH priority for thumbnails
     const jobId = await videoJobQueue.addJob(

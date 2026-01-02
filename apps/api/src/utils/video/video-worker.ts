@@ -139,7 +139,7 @@ export class VideoWorker extends EventEmitter {
         const params = JSON.parse(job.params_json);
 
         // Download source file if using cloud storage
-        let sourcePath = `./public/${job.file_path}`;
+        let sourcePath = `./${job.file_path}`;
         if (this.storage) {
           try {
             const fs = await import('fs/promises');

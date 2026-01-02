@@ -40,7 +40,7 @@ export async function deleteAssetCompletely(
     if (storage) {
       fileExists = await storage.existsOriginal(filePath);
     } else {
-      const localPath = path.join('.', 'public', filePath);
+      const localPath = path.join('.', '/', filePath);
       fileExists = fs.existsSync(localPath);
     }
 
@@ -94,7 +94,7 @@ export async function deleteAssetCompletely(
     } else {
       // Delete from local storage
       try {
-        const localPath = path.join('.', 'public', filePath);
+        const localPath = path.join('.', '/', filePath);
         
         const stats = fs.statSync(localPath);
         if (stats.isDirectory()) {

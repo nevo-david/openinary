@@ -45,7 +45,7 @@ t.get("/*", async (c) => {
   const filePath = fileSegments.join("/");
 
   let cachePath = getCachePath(path);
-  const localPath = `./public/${filePath}`;
+  const localPath = `./${filePath}`;
   const ext = filePath.split(".").pop();
 
   // Get browser support info for format optimization

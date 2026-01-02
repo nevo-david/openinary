@@ -157,7 +157,7 @@ export class S3ClientWrapper {
    */
   getPublicUrl(key: string): string {
     if (this.config.publicUrl) {
-      return `${this.config.publicUrl}/${key}`;
+      return `${key}`;
     }
     
     // For custom endpoints, construct URL from endpoint

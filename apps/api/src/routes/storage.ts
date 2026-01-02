@@ -141,19 +141,19 @@ storageRoute.get("/", async (c) => {
 
     if (storageClient) {
       // List only objects in the public/ folder
-      const objects = await storageClient.list("public/");
+      const objects = await storageClient.list("/");
       
       // Remove the public/ prefix from all keys
       const publicObjects = objects
-        .filter(obj => obj.key.startsWith("public/"))
+        .filter(obj => obj.key.startsWith("/"))
         .map(obj => ({
           ...obj,
-          key: obj.key.substring(7) // Remove "public/" prefix (7 characters)
+          key: obj.key
         }));
       
       root = buildTreeFromKeys(publicObjects);
     } else {
-      const publicDir = path.join(".", "public");
+      const publicDir = path.join(".", "/");
       root = buildLocalTree(publicDir);
     }
 
@@ -227,7 +227,7 @@ storageRoute.get("/*", async (c) => {
         updatedAt: metadata.updatedAt.toISOString(),
       });
     } else {
-      const localPath = path.join(".", "public", filePath);
+      const localPath = path.join(".", "/", filePath);
       
       if (!fs.existsSync(localPath)) {
         return c.json(
