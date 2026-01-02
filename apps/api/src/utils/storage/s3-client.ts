@@ -52,6 +52,7 @@ export class S3ClientWrapper {
    * Checks if an object exists in the bucket
    */
   async objectExists(key: string): Promise<boolean> {
+      console.log(key);
     try {
       await this.s3Client.send(new HeadObjectCommand({
         Bucket: this.config.bucketName,
